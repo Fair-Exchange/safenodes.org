@@ -1,20 +1,248 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<nav class="navbar navbar-icon-top navbar-expand-md navbar-dark bg-safe shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img height="35px" src="https://i2.wp.com/safecoin.org/wp-content/uploads/2018/06/cropped-logo-text-280x70.png?fit=280%2C70&ssl=1"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto"></ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search Address,Block,Transaction,Token" aria-label="Search Address,Block,Transaction,Token">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="bg-white shadow-sm">
+    <div class="container safe-nav">
+        <nav class="nav nav-underline">
+
+            <div ngbDropdown>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownBasic1" ngbDropdownToggle>
+                    <i class="fa fa-cubes"></i>
+                    Blockchain
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <div class="dropdown-divider"></div>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>
+
+            <div ngbDropdown>
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownBasic2" ngbDropdownToggle>
+                    <i class="fa fa-file-signature"></i>
+                    Contract
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                    <button ngbDropdownItem>Action - 1</button>
+                    <button ngbDropdownItem>Another Action</button>
+                    <div class="dropdown-divider"></div>
+                    <button ngbDropdownItem>Something else is here</button>
+                </div>
+            </div>
+
+            <a class="nav-link" href="#">
+                <i class="fa fa-globe"></i> Nodes
+                <span class="badge badge-info align-text-bottom">27</span>
+            </a>
+            <a class="nav-link" href="#"><i class="fa fa-search"></i> Explore</a>
+
+            <div class="ml-auto">
+                <div ngbDropdown>
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownBasic3" ngbDropdownToggle>
+                        <i class="fa fa-key"></i>
+                        Sign in
+                    </a>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
+                        <button ngbDropdownItem>Action - 1</button>
+                        <button ngbDropdownItem>Another Action</button>
+                        <div class="dropdown-divider"></div>
+                        <button ngbDropdownItem>Something else is here</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="my-3 p-3 bg-white rounded shadow-sm safe-block safe-address">
+        <h6 class="border-bottom border-gray pb-2 mb-0">ADDRESS</h6>
+        <div class="table-responsive">
+            <table class="table m-0 table-md">
+                <tbody>
+                <tr>
+                    <th scope="row"><span>Address</span></th>
+                    <td>Test</td>
+                </tr>
+                <tr>
+                    <th scope="row"><span>Name</span></th>
+                    <td>Boyau</td>
+                </tr>
+                <tr>
+                    <th scope="row"><span>Transfer </span></th>
+                    <td>
+                        <i class="fa fa-arrow-down text-success"></i> 110
+                        <i class="fa fa-arrow-up text-danger"></i> 110
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><span>Address</span></th>
+                    <td>22 001 035 SAFE</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
+        <h6 class="border-bottom border-gray pb-2 mb-0">ADDRESS</h6>
+        <div class="table-responsive">
+            <table class="table table-hover table-sm ">
+                <thead>
+                <tr>
+                    <th scope="col">Hash</th>
+                    <th scope="col" style="min-width: 120px;">Age</th>
+                    <th scope="col">From</th>
+                    <th scope="col">To</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e</a></span></div>
+                    </td>
+                    <td>2 weeks ago</td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td><span data-toggle="tooltip" data-placement="top" title="Tooltip on top">527 512</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e</a></span></div>
+                    </td>
+                    <td>2 weeks ago</td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td><span data-toggle="tooltip" data-placement="top" title="Tooltip on top">527 512</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e</a></span></div>
+                    </td>
+                    <td>2 weeks ago</td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td><span data-toggle="tooltip" data-placement="top" title="Tooltip on top">527 512</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e</a></span></div>
+                    </td>
+                    <td>2 weeks ago</td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td>
+                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="#/transaction/db0c4395962579096b72c974c6616ef177fc272eeb4feede6f1816df3ad59c0e">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
+                    </td>
+                    <td><span data-toggle="tooltip" data-placement="top" data-html="true" title="SAFE 527 512<br>USD 570<br>EUR 570">527 512</span></td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation example" class="border-top">
+                <ul class="pagination mt-3 justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<section id="footer">
+    <div class="container">
+        <div class="row text-center text-xs-center text-sm-left text-md-left">
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <h5>SafeCoin</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>About Us</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Support</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Community</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <h5>Safe Dev</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>RoadMap</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Blog</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>GitHub</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Documentation</a></li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12 col-sm-4 col-md-4">
+                <h5>Safe Ecosystem</h5>
+                <ul class="list-unstyled quick-links">
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Exchanges</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Wallets</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Explorers</a></li>
+                    <li><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Partners</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                <ul class="list-unstyled list-inline social text-center">
+                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-discord"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-github"></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void();"><i class="fab fa-bitcoin"></i></a></li>
+                </ul>
+            </div>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p class="h6">&copy All right Reversed.<a class="ml-2" href="https://safecoin.org/" target="_blank">SafeCoin</a></p>
+            </div>
+            <hr>
+        </div>
+    </div>
+</section>
