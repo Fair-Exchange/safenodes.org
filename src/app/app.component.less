@@ -18,7 +18,7 @@ section {
 }
 
 #footer a {
-    color: #ffffff;
+    //color: #ffffff;
     text-decoration: none !important;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
@@ -93,24 +93,10 @@ section {
     }
 }
 
-.truncate-ellipsis {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-    white-space: nowrap;
-}
-
-.truncate-ellipsis > * {
-    display: table-cell;
-    overflow: hidden;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-}
 
 
-.safe-block {
-    border-left : 15px solid #01698d;
-}
+
+
 
 
 .table-hover tr {
@@ -227,4 +213,29 @@ body {
 
 .navbar-icon-top .navbar-nav .nav-link > .fa > .badge {
     top: -10px;
+}
+
+
+// Footer buttons
+.alert-donate {
+    color: #FFF;
+    background-color: #01445e;
+    border-color: #01445e;
+
+    a {
+        color: #FFF;
+    }
+}
+
+.copyright-link {
+    color: #FFF;
+
+    -webkit-transition-duration: 0.4s;
+    -moz-transition-duration: 0.4s;
+    -o-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+
+    &:hover {
+        color: #999;
+    }
 }
