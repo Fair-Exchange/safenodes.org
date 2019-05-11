@@ -93,12 +93,6 @@ section {
     }
 }
 
-
-
-
-
-
-
 .table-hover tr {
     -webkit-transition-duration: 0.4s;
     -moz-transition-duration: 0.4s;
@@ -106,13 +100,10 @@ section {
     transition-duration: 0.4s;
 }
 
-
-
 .safe-nav {
     .nav-link {
         display: block;
         padding: .5rem 0.5rem;
-
     }
     .nav-underline .nav-link {
         font-size: 12px;
@@ -238,4 +229,94 @@ body {
     &:hover {
         color: #999;
     }
+}
+
+/**************************************************************************************
+***************************************************************************************
+****************************** LOADER ANIMATION ***************************************
+***************************************************************************************
+***************************************************************************************
+ */
+
+.loader {
+    position: relative;
+    margin-top: 30px;
+    padding: 30px;
+}
+
+.outer,
+.middle,
+.inner {
+    border: 3px solid transparent;
+    border-top-color: #01698d;
+    border-right-color: #01698d;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.outer {
+    width: 3.5em;
+    height: 3.5em;
+    margin-left: -1.75em;
+    margin-top: -1.75em;
+    animation: spin 2s linear infinite;
+}
+
+.middle {
+    width: 2.1em;
+    height: 2.1em;
+    margin-left: -1.05em;
+    margin-top: -1.05em;
+    animation: spin 1.75s linear reverse infinite;
+}
+
+.inner {
+    width: 0.8em;
+    height: 0.8em;
+    margin-left: -0.4em;
+    margin-top: -0.4em;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/**************************************************************************************
+***************************************************************************************
+***************************** TOP MENU ANIMATION **************************************
+***************************************************************************************
+***************************************************************************************
+ */
+
+.bubble-anim {
+    position: relative;
+}
+
+.bubble-anim::before, .bubble-anim::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #0195b9;
+    transform-origin: center;
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.bubble-anim::before {
+    top: 2px;
+}
+
+.bubble-anim::after {
+    bottom: 2px;
+}
+
+.bubble-anim:hover::before, .bubble-anim:hover::after {
+    transform: translateX(-50%) scaleX(1);
 }

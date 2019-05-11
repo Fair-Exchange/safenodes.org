@@ -22,7 +22,7 @@
     <div class="container safe-nav">
         <nav class="nav nav-underline">
 
-            <div ngbDropdown>
+            <div ngbDropdown class="bubble-anim">
                 <a class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
                     <i class="fa fa-cubes"></i>
                     Blockchain
@@ -35,7 +35,7 @@
                 </div>
             </div>
 
-            <div ngbDropdown>
+            <div ngbDropdown class="bubble-anim">
                 <a class="nav-link dropdown-toggle" id="dropdownBasic2" ngbDropdownToggle>
                     <i class="fa fa-file-signature"></i>
                     Contract
@@ -48,14 +48,14 @@
                 </div>
             </div>
 
-            <a class="nav-link" routerLink="/nodes">
+            <a class="nav-link bubble-anim" routerLink="/nodes">
                 <i class="fa fa-globe"></i> Nodes
                 <span class="badge badge-info align-text-bottom">27</span>
             </a>
-            <a class="nav-link" routerLink="/"><i class="fa fa-search"></i> Explore</a>
+            <a class="nav-link bubble-anim" routerLink="/"><i class="fa fa-search"></i> Explore</a>
 
             <div class="ml-auto">
-                <div ngbDropdown>
+                <div ngbDropdown class="bubble-anim">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownBasic3" ngbDropdownToggle>
                         <i class="fa fa-key"></i>
                         Sign in
@@ -70,6 +70,12 @@
             </div>
         </nav>
     </div>
+</div>
+
+<div class="loader" *ngIf="loading">
+    <div class="outer"></div>
+    <div class="middle"></div>
+    <div class="inner"></div>
 </div>
 
 <router-outlet></router-outlet>
