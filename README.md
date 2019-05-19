@@ -29,9 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Push commit 
 
-git init && 
-git remote add origin https://Seby45@bitbucket.org/Seby45/safenodes.git
+git init && git remote add origin https://Seby45@bitbucket.org/Seby45/safenodes.git
 git branch -D master
-git add -A
-git commit -am "the first commit"
-git push -f origin master
+git add -A && git commit -am "19-05-2019" && git push -f origin master

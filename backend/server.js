@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'development') {
     app.use(errorhandler())
 }
 
-app.use(require('./routes'));
+app.use(require('./routes.js'));
 
 const port = process.env.PORT || 3001;
 

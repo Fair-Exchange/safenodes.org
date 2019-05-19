@@ -35,7 +35,7 @@ export class GenerateWalletComponent implements OnInit {
 
             // Send the data using post
             const posting = $.post(
-                '/api/generateWallet',
+                ':3001',
                 { safePass : password }
             );
 
