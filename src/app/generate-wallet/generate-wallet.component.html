@@ -1,0 +1,64 @@
+<div class="container">
+
+    <div class="card mt-4 safe-card-v2 mb-4">
+        <div class="card-header text-center">
+            Create new wallet
+        </div>
+        <div class="card-body">
+
+            <div id="print-section" class="container" [hidden]="!showKey">
+                <div class="row m-2">
+                    <div class="col text-center alert alert-success">
+                        <h3>Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #publicQRCode></qr-code>
+                    </div>
+
+                    <div class="col text-center my-auto"><img alt="Safe Coin" height="150px" src="https://safe.trade/assets/safe.svg" style="vertical-align:middle"></div>
+
+                    <div class="col text-center alert alert-danger">
+                        <h3>Private key</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #privateQRCode></qr-code>
+                    </div>
+                </div>
+
+                <table class="table mt-2 mb-2">
+                    <tbody>
+                    <tr>
+                        <th>Address</th>
+                        <td>{{publicTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:200px">Private Key</th>
+                        <td>{{privateTextQRCode}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-center doNotPrint">
+                    <button (click)="print()" type="submit">PRINT MY WALLET</button>
+                </div>
+            </div>
+
+            <form action="/" id="generateWalletForm" [hidden]="showKey">
+                <p>
+                    This password encrypts your private key. This does not act as a seed to generate your keys.
+                </p>
+                <p>
+                    You will need this password and your private key to unlock your wallet.
+                </p>
+                <label>
+                    <p class="label-txt">ENTER YOUR PASSWORD <small>(A strong password is required)</small></p>
+                    <input id="safePassword" type="password" name="password_input" autocomplete="off" class="input" value="">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+
+                <div class="" id="passwordStrength"></div>
+
+                <button id="sendForm" type="submit" disabled>NEXT</button>
+            </form>
+        </div>
+    </div>
+</div>
+
