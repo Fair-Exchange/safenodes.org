@@ -25,3 +25,13 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Push commit 
+
+git init && 
+git remote add origin https://Seby45@bitbucket.org/Seby45/safenodes.git
+git branch -D master
+git add -A
+git commit -am "the first commit"
+git push -f origin master
