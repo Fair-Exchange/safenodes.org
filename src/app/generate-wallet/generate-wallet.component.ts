@@ -9,11 +9,19 @@ import * as $ from 'jquery';
 export class GenerateWalletComponent implements OnInit {
 
     showKey = false;
-    publicTextQRCode = 'DEFAULT';
-    privateTextQRCode = 'DEFAULT';
+    SafekeyTextQRCode = 'DEFAULT';
+    SafeWifTextQRCode = 'DEFAULT';
+    SafeAddressTextQRCode = 'DEFAULT';
 
-    @ViewChild('publicQRCode') publicQRCode: any;
-    @ViewChild('privateQRCode') privateQRCode: any;
+    RavenAddressTextQRCode = 'DEFAULT';
+    RavenWifTextQRCode = 'DEFAULT';
+
+    @ViewChild('SafekeyQRCode') SafekeyQRCode: any;
+    @ViewChild('SafeAddressQRCode') SafeAddressQRCode: any;
+    @ViewChild('SafeWifQRCode') SafeWifQRCode: any;
+
+    @ViewChild('RavenAddressQRCode') RavenAddressQRCode: any;
+    @ViewChild('RavenWifQRCode') RavenWifQRCode: any;
 
     constructor() {
 
@@ -35,7 +43,7 @@ export class GenerateWalletComponent implements OnInit {
 
             // Send the data using post
             const posting = $.post(
-                ':3001',
+                'http://nodes.safenodes.org:8002',
                 { safePass : password }
             );
 
@@ -43,15 +51,30 @@ export class GenerateWalletComponent implements OnInit {
             posting.done(res => {
 
                 _SELF.showKey = true;
-                console.log('Get back : ', res.data);
 
-                _SELF.publicTextQRCode = res.data.SAFE;
-                _SELF.publicQRCode.value = res.data.SAFE;
-                _SELF.publicQRCode.generate();
+                _SELF.SafekeyTextQRCode = res.data.btcpubkey;
+                _SELF.SafekeyQRCode.value = res.data.btcpubkey;
+                _SELF.SafekeyQRCode.generate();
 
-                _SELF.privateTextQRCode = res.data.btcpubkey;
-                _SELF.privateQRCode.value = res.data.btcpubkey;
-                _SELF.privateQRCode.generate();
+                _SELF.SafeWifTextQRCode = res.data.KMDwif ;
+                _SELF.SafeWifQRCode.value = res.data.KMDwif ;
+                _SELF.SafeWifQRCode.generate();
+
+                _SELF.RavenAddressTextQRCode = res.data.BTC;
+                _SELF.RavenAddressQRCode.value = res.data.BTC;
+                _SELF.RavenAddressQRCode.generate();
+
+                _SELF.RavenWifTextQRCode = res.data.BTCwif ;
+                _SELF.RavenWifQRCode.value = res.data.BTCwif ;
+                _SELF.RavenWifQRCode.generate();
+
+                _SELF.SafeAddressTextQRCode = res.data.SAFE;
+                _SELF.SafeAddressQRCode.value = res.data.SAFE;
+                _SELF.SafeAddressQRCode.generate();
+
+                // Directly print page
+                setTimeout(() => { _SELF.print(); }, 3000);
+
             }).fail((jqxhr, textStatus, error) => {
 
                 // Something wrong... Show that

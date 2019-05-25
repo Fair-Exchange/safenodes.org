@@ -8,28 +8,62 @@
 
             <div id="print-section" class="container" [hidden]="!showKey">
                 <div class="row m-2">
-                    <div class="col text-center alert alert-success">
-                        <h3>Address</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #publicQRCode></qr-code>
+
+                    <div class="col text-center alert alert-info">
+                        <h3>Safe Key</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #SafekeyQRCode></qr-code>
                     </div>
 
                     <div class="col text-center my-auto"><img alt="Safe Coin" height="150px" src="https://safe.trade/assets/safe.svg" style="vertical-align:middle"></div>
 
-                    <div class="col text-center alert alert-danger">
-                        <h3>Private key</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #privateQRCode></qr-code>
+                    <div class="col text-center alert alert-info">
+                        <h3>Safe Wif</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #SafeWifQRCode></qr-code>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col text-center alert alert-info">
+                        <h3>Raven Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #RavenAddressQRCode></qr-code>
+                    </div>
+
+                    <div class="col text-center my-auto"></div>
+
+                    <div class="col text-center alert alert-info">
+                        <h3>Raven Wif</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #RavenWifQRCode></qr-code>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col text-center alert alert-info">
+                        <h3>Safe Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="150" #SafeAddressQRCode></qr-code>
                     </div>
                 </div>
 
                 <table class="table mt-2 mb-2">
                     <tbody>
                     <tr>
-                        <th>Address</th>
-                        <td>{{publicTextQRCode}}</td>
+                        <th>Safe Key</th>
+                        <td>{{SafekeyTextQRCode}}</td>
                     </tr>
                     <tr>
-                        <th style="width:200px">Private Key</th>
-                        <td>{{privateTextQRCode}}</td>
+                        <th style="width:200px">Safe Wif</th>
+                        <td>{{SafeWifTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Raven Address</th>
+                        <td>{{RavenAddressTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Raven Wif</th>
+                        <td>{{RavenWifTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Safe Address</th>
+                        <td>{{SafeAddressTextQRCode}}</td>
                     </tr>
                     </tbody>
                 </table>

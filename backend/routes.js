@@ -1,25 +1,36 @@
 const   express = require('express'),
-        request = require('request'),
+        jayson = require('jayson'),
         bodyParser = require('body-parser'),
         app = module.exports = express.Router();
 
 app.use(bodyParser.json());
 
 // Let configure auth RPC options
-let options = {
-    url: "http://127.0.0.1:8771",
-    method: "post",
-    headers:
-        {
-            "content-type": "text/plain"
-        },
-    auth: {
-        user: 'ayo',        // IMPORTANT : User for RPC request
-        pass: 'ayo123'      // IMPORTANT : Password for RPC request
-    }
+var options = {
+    //  port of rpc server (int) or docker container port
+    port: 8776,
+    // string domain name or ip of rpc server, default '127.0.0.1'
+    // If its is domain name(https://abc.com),then use abc.com as the host name
+    host: '127.0.0.1',
+    // string with default path for procedure, default '/'
+    path: '/',
+    // boolean false to turn rpc checks off, default true
+    strict: true,
+    //HTTP methods get,post,put etc
+    method: 'POST',
+    // set the header for the call,Here we are setting the authorization
+    headers: {
+
+    },
+    // JSON RPC version 1,If it is JSON RPC call version 2 then put 2
+    version: 1
 };
 
-app.post('/api/generateWallet', function(req, res) {
+app.post('/', function(req, res) {
+
+    const client = jayson.client.http(
+        options
+    );
 
     // Get user password
     const userPassword = req.body.safePass;
@@ -62,38 +73,11 @@ app.post('/api/generateWallet', function(req, res) {
         );
     } else {
 
-        return res.status(200).json(
-            {
-                //data : out
-                data : {
-                    "pubkey":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-                    "RS":"NXT-ZXTB-QALH-CERS-8BXYW",
-                    "NXT":"7961143348897511209",
-                    "btcpubkey":"036950fa523b45afacd5d92748787253efe50ab1ce7868a97273ae5f59fc5f0263",
-                    "rmd160":"4984fad8a19c7fae540e0559c736dda5ad1157a1",
-                    "BTC":"RFyvi85fv9qoJL5ZJWMt1nZdviBNtnLVtn",
-                    "SAFE":"RfKXhENxdLJg7mDeKvhCVuqRZDSKgh7g8n",
-                    "result":"success",
-                    "handle":"",
-                    "myip":"94.237.52.137",
-                    "persistent":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-                    "status":"unlocked",
-                    "duration":3600,
-                    "privkey":"b0fd7e1cc130911f1d483e23049455df361ed516070a8e54cd1947a4280aa041",
-                    "BTCwif":"L39kqqQoqw3ZtKYFwxdWtwhKKAuLKxTPrTnuyQogKHXsLDCB4mDd",
-                    "KMDwif":"V4XDigPgXJvxKtM7gahzTZU2VgA8FUzjnQns77wTGUWHWQQ9vzQM",
-                    "tag":"6837804746000623472"
-                }
-            }
-        );
-
-        // Prepare body before send request
-        options.body = JSON.stringify( {"jsonrpc": "1.0", "id": "curltest", "method": "walletpassphrase", "params": [userPassword, 9999999] });
-
-        // Launch RPC request
-        request(options, (error, response, body) => {
-            if (error) {
-                console.error('An error has occurred: ', error);
+        // Invoke procedure_name('Parameters for the procedure','Parameter2');
+        return client.request('encryptwallet', [userPassword], function (err, response) {
+            if (err) {
+                // If any err while making the call
+                console.error('An error has occurred: ', err);
 
                 // Reply to user
                 return res.status(200).json(
@@ -103,61 +87,13 @@ app.post('/api/generateWallet', function(req, res) {
                     }
                 );
             } else {
-
-                const out = JSON.parse(body);
-
-                console.log('Post successful: response: ', out);
-
                 // Reply to user
                 return res.status(200).json(
                     {
-                        //data : out
-                        data : {
-                            "pubkey":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-                            "RS":"NXT-ZXTB-QALH-CERS-8BXYW",
-                            "NXT":"7961143348897511209",
-                            "btcpubkey":"036950fa523b45afacd5d92748787253efe50ab1ce7868a97273ae5f59fc5f0263",
-                            "rmd160":"4984fad8a19c7fae540e0559c736dda5ad1157a1",
-                            "BTC":"RFyvi85fv9qoJL5ZJWMt1nZdviBNtnLVtn",
-                            "SAFE":"RfKXhENxdLJg7mDeKvhCVuqRZDSKgh7g8n",
-                            "result":"success",
-                            "handle":"",
-                            "myip":"94.237.52.137",
-                            "persistent":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-                            "status":"unlocked",
-                            "duration":3600,
-                            "privkey":"b0fd7e1cc130911f1d483e23049455df361ed516070a8e54cd1947a4280aa041",
-                            "BTCwif":"L39kqqQoqw3ZtKYFwxdWtwhKKAuLKxTPrTnuyQogKHXsLDCB4mDd",
-                            "KMDwif":"V4XDigPgXJvxKtM7gahzTZU2VgA8FUzjnQns77wTGUWHWQQ9vzQM",
-                            "tag":"6837804746000623472"
-                        }
+                        data : response
                     }
                 );
             }
         });
     }
 });
-
-/*
-{
-    Return of RPC request example as JSON format
-        {
-            "pubkey":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-            "RS":"NXT-ZXTB-QALH-CERS-8BXYW",
-            "NXT":"7961143348897511209",
-            "btcpubkey":"036950fa523b45afacd5d92748787253efe50ab1ce7868a97273ae5f59fc5f0263",
-            "rmd160":"4984fad8a19c7fae540e0559c736dda5ad1157a1",
-            "BTC":"RFyvi85fv9qoJL5ZJWMt1nZdviBNtnLVtn",
-            "SAFE":"RfKXhENxdLJg7mDeKvhCVuqRZDSKgh7g8n",
-            "result":"success",
-            "handle":"",
-            "myip":"94.237.52.137",
-            "persistent":"be0feb932cddbcf37f7a482be0a89e530d0416bec8b5acc237936a0159055056",
-            "status":"unlocked",
-            "duration":3600,
-            "privkey":"b0fd7e1cc130911f1d483e23049455df361ed516070a8e54cd1947a4280aa041",
-            "BTCwif":"L39kqqQoqw3ZtKYFwxdWtwhKKAuLKxTPrTnuyQogKHXsLDCB4mDd",
-            "KMDwif":"V4XDigPgXJvxKtM7gahzTZU2VgA8FUzjnQns77wTGUWHWQQ9vzQM",
-            "tag":"6837804746000623472"
-        }
- */

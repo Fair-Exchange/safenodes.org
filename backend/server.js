@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(require('./routes.js'));
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 8002;
 
 // start https server
 let sslOptions = {
