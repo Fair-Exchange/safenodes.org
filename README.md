@@ -29,6 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Push commit 
 
-cd /var/www/safeNodesWebsite && ng build --prod=true --base-href / --deploy-url / && cd dist/safeNodesWebsite && git init && git remote add origin https://Seby45@bitbucket.org/Seby45/safenodes.git && git add -A && git commit -am "25-05-2019" && git push -f origin master
+cd /var/www/safeNodesWebsite && ng build --prod=true --base-href / --deploy-url / && cd dist/safeNodesWebsite && git init && git remote add origin https://Seby45@bitbucket.org/Seby45/safenodes.git && git add -A && git commit -am "29-05-2019" && git push -f origin master
 
 

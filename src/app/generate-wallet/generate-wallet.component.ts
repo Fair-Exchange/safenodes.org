@@ -14,6 +14,7 @@ export class GenerateWalletComponent implements OnInit {
 
     cdr;
     showKey = false;
+    passwordFail = false;
     SafeWifTextQRCode = 'DEFAULT';
     SafeAddressTextQRCode = 'DEFAULT';
     SafeKeyTextQRCode = 'DEFAULT';
@@ -61,10 +62,16 @@ export class GenerateWalletComponent implements OnInit {
 
             // Get some values from elements on the page:
             const password = $(this).find( 'input[name=\'password_input\']' ).val();
+            const passwordConfirm = $(this).find( 'input[name=\'password_confirm\']' ).val();
 
-            keyGenerate.hash(password, (err, keys) => {
-                _SELF.generateKeys(keys);
-            });
+            // Check password
+            if (password === passwordConfirm) {
+                keyGenerate.hash(password, (err, keys) => {
+                    _SELF.generateKeys(keys);
+                });
+            } else {
+                $('#passwordStrength').removeClass().addClass('alert alert-danger').html('Passwords are not identical');
+            }
         });
 
         $(document).ready(() => {
@@ -81,8 +88,8 @@ export class GenerateWalletComponent implements OnInit {
                     '^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$',
                     'g');
 
-                // Must be at least 6 characters long
-                const okRegex = new RegExp('(?=.{6,}).*', 'g');
+                // Must be at least 20 characters long
+                const okRegex = new RegExp('(?=.{20,}).*', 'g');
 
                 $('#sendForm').prop('disabled', true );
 
@@ -90,11 +97,11 @@ export class GenerateWalletComponent implements OnInit {
 
                 if (okRegex.test(val) === false) {
                     // If ok regex doesn't match the password
-                    $('#passwordStrength').removeClass().addClass('alert alert-danger').html('Password must be 6 characters long.');
+                    $('#passwordStrength').removeClass().addClass('alert alert-danger').html('Password must be 20 characters long or more.');
                 } else if (strongRegex.test(val)) {
                     // If reg ex matches strong password
                     $('#passwordStrength').removeClass().addClass('alert alert-success').html('Good Password!');
-                    $('#sendForm').prop('disabled',false);
+                    $('#sendForm').prop('disabled', false);
                 } else if (mediumRegex.test(val)) {
                     // If medium password matches the reg ex
                     $('#passwordStrength').removeClass().addClass(
