@@ -1,0 +1,23 @@
+{
+    "name": "nodegen",
+    "version": "1.0.0",
+    "description": "",
+    "main": "gen.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bigi": "^1.4.2",
+        "bitgo-utxo-lib": "github:zelcash/bitgo-utxo-lib",
+        "crypto": "^1.0.1",
+        "readline-sync": "^1.4.9",
+        "scrypt": "^6.0.3",
+        "sha256": "^0.2.0"
+    },
+    "devDependencies": {
+        "browserify": "^16.2.3",
+        "tinyify": "^2.5.1"
+    }
+}

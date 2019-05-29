@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container pt-5 pb-5">
 
     <div class="card mt-4 safe-card-v2 mb-4">
         <div class="card-header text-center">
@@ -8,50 +8,92 @@
 
             <div id="print-section" class="container" [hidden]="!showKey">
                 <div class="row m-2">
-
                     <div class="col text-center alert alert-info">
-                        <h3>Safe Key</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #SafekeyQRCode></qr-code>
+                        <h3>Safe Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #SafeAddressQRCode></qr-code>
                     </div>
 
                     <div class="col text-center my-auto"><img alt="Safe Coin" height="150px" src="https://safe.trade/assets/safe.svg" style="vertical-align:middle"></div>
 
                     <div class="col text-center alert alert-info">
                         <h3>Safe Wif</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #SafeWifQRCode></qr-code>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #SafeWifQRCode></qr-code>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col text-center alert alert-info">
+                        <h3>Safe Key</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #SafeKeyQRCode></qr-code>
+                    </div>
+
+                    <div class="col text-center my-auto"></div>
+
+                    <div class="col text-center alert alert-info">
+                        <h3>Safe PrivateKey</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #SafePrivateKeyQRCode></qr-code>
                     </div>
                 </div>
 
                 <div class="row m-2">
                     <div class="col text-center alert alert-info">
                         <h3>Raven Address</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #RavenAddressQRCode></qr-code>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #RavenAddressQRCode></qr-code>
                     </div>
 
                     <div class="col text-center my-auto"></div>
 
                     <div class="col text-center alert alert-info">
                         <h3>Raven Wif</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #RavenWifQRCode></qr-code>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #RavenWifQRCode></qr-code>
                     </div>
                 </div>
 
                 <div class="row m-2">
                     <div class="col text-center alert alert-info">
-                        <h3>Safe Address</h3>
-                        <qr-code [value]="'QR Code Data'" [size]="150" #SafeAddressQRCode></qr-code>
+                        <h3>BTC Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #BTCAddressQRCode></qr-code>
+                    </div>
+
+                    <div class="col text-center my-auto"></div>
+
+                    <div class="col text-center alert alert-info">
+                        <h3>BTC Wif</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #BTCWifQRCode></qr-code>
+                    </div>
+                </div>
+
+                <div class="row m-2">
+                    <div class="col text-center alert alert-info">
+                        <h3>BTG Address</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #BTGAddressQRCode></qr-code>
+                    </div>
+
+                    <div class="col text-center my-auto"></div>
+
+                    <div class="col text-center alert alert-info">
+                        <h3>BTG Wif</h3>
+                        <qr-code [value]="'QR Code Data'" [size]="115" #BTGWifQRCode></qr-code>
                     </div>
                 </div>
 
                 <table class="table mt-2 mb-2">
                     <tbody>
                     <tr>
-                        <th>Safe Key</th>
-                        <td>{{SafekeyTextQRCode}}</td>
+                        <th>Safe Address</th>
+                        <td>{{SafeAddressTextQRCode}}</td>
                     </tr>
                     <tr>
                         <th style="width:200px">Safe Wif</th>
                         <td>{{SafeWifTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Safe Key</th>
+                        <td>{{SafeKeyTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>Safe Private Key</th>
+                        <td>{{SafePrivateKeyTextQRCode}}</td>
                     </tr>
                     <tr>
                         <th>Raven Address</th>
@@ -62,8 +104,20 @@
                         <td>{{RavenWifTextQRCode}}</td>
                     </tr>
                     <tr>
-                        <th>Safe Address</th>
-                        <td>{{SafeAddressTextQRCode}}</td>
+                        <th>BTC Address</th>
+                        <td>{{BTCAddressTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>BTC Wif</th>
+                        <td>{{BTCWifTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>BTG Address</th>
+                        <td>{{BTGAddressTextQRCode}}</td>
+                    </tr>
+                    <tr>
+                        <th>BTG Wif</th>
+                        <td>{{BTGWifTextQRCode}}</td>
                     </tr>
                     </tbody>
                 </table>

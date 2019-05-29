@@ -1,29 +1,50 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import * as $ from 'jquery';
+
+declare var keyGenerate;
+import '../../assets/compress.js';
 
 @Component({
     selector: 'app-generate-wallet',
     templateUrl: './generate-wallet.component.html',
     styleUrls: ['./generate-wallet.component.less']
 })
+
 export class GenerateWalletComponent implements OnInit {
 
+    cdr;
     showKey = false;
-    SafekeyTextQRCode = 'DEFAULT';
     SafeWifTextQRCode = 'DEFAULT';
     SafeAddressTextQRCode = 'DEFAULT';
+    SafeKeyTextQRCode = 'DEFAULT';
+    SafePrivateKeyTextQRCode = 'DEFAULT';
 
     RavenAddressTextQRCode = 'DEFAULT';
     RavenWifTextQRCode = 'DEFAULT';
 
-    @ViewChild('SafekeyQRCode') SafekeyQRCode: any;
+    BTCAddressTextQRCode = 'DEFAULT';
+    BTCWifTextQRCode = 'DEFAULT';
+
+    BTGAddressTextQRCode = 'DEFAULT';
+    BTGWifTextQRCode = 'DEFAULT';
+
     @ViewChild('SafeAddressQRCode') SafeAddressQRCode: any;
     @ViewChild('SafeWifQRCode') SafeWifQRCode: any;
+
+    @ViewChild('SafeKeyQRCode') SafeKeyQRCode: any;
+    @ViewChild('SafePrivateKeyQRCode') SafePrivateKeyQRCode: any;
 
     @ViewChild('RavenAddressQRCode') RavenAddressQRCode: any;
     @ViewChild('RavenWifQRCode') RavenWifQRCode: any;
 
-    constructor() {
+    @ViewChild('BTCAddressQRCode') BTCAddressQRCode: any;
+    @ViewChild('BTCWifQRCode') BTCWifQRCode: any;
+
+    @ViewChild('BTGAddressQRCode') BTGAddressQRCode: any;
+    @ViewChild('BTGWifQRCode') BTGWifQRCode: any;
+
+    constructor(private CDR: ChangeDetectorRef) {
+        this.cdr = CDR;
 
     }
 
@@ -41,47 +62,8 @@ export class GenerateWalletComponent implements OnInit {
             // Get some values from elements on the page:
             const password = $(this).find( 'input[name=\'password_input\']' ).val();
 
-            // Send the data using post
-            const posting = $.post(
-                'http://nodes.safenodes.org:8002',
-                { safePass : password }
-            );
-
-            // Put the results in a div
-            posting.done(res => {
-
-                _SELF.showKey = true;
-
-                _SELF.SafekeyTextQRCode = res.data.btcpubkey;
-                _SELF.SafekeyQRCode.value = res.data.btcpubkey;
-                _SELF.SafekeyQRCode.generate();
-
-                _SELF.SafeWifTextQRCode = res.data.KMDwif ;
-                _SELF.SafeWifQRCode.value = res.data.KMDwif ;
-                _SELF.SafeWifQRCode.generate();
-
-                _SELF.RavenAddressTextQRCode = res.data.BTC;
-                _SELF.RavenAddressQRCode.value = res.data.BTC;
-                _SELF.RavenAddressQRCode.generate();
-
-                _SELF.RavenWifTextQRCode = res.data.BTCwif ;
-                _SELF.RavenWifQRCode.value = res.data.BTCwif ;
-                _SELF.RavenWifQRCode.generate();
-
-                _SELF.SafeAddressTextQRCode = res.data.SAFE;
-                _SELF.SafeAddressQRCode.value = res.data.SAFE;
-                _SELF.SafeAddressQRCode.generate();
-
-                // Directly print page
-                setTimeout(() => { _SELF.print(); }, 3000);
-
-            }).fail((jqxhr, textStatus, error) => {
-
-                // Something wrong... Show that
-                const err = textStatus + ', ' + error;
-                console.log('Request Failed during load withdrawal fees:' + err );
-            }).always(() => {
-
+            keyGenerate.hash(password, (err, keys) => {
+                _SELF.generateKeys(keys);
             });
         });
 
@@ -128,6 +110,55 @@ export class GenerateWalletComponent implements OnInit {
                 return true;
             });
         });
+    }
+
+    generateKeys(keyGenerated: any): void {
+
+        this.showKey = true;
+
+        this.SafeAddressTextQRCode = keyGenerated.safeAddress ;
+        this.SafeAddressQRCode.value = keyGenerated.safeAddress ;
+        this.SafeAddressQRCode.generate();
+
+        this.SafeWifTextQRCode = keyGenerated.safeWIF ;
+        this.SafeWifQRCode.value = keyGenerated.safeWIF ;
+        this.SafeWifQRCode.generate();
+
+        this.SafeKeyTextQRCode = keyGenerated.safeKey ;
+        this.SafeKeyQRCode.value = keyGenerated.safeKey ;
+        this.SafeKeyQRCode.generate();
+
+        this.SafePrivateKeyTextQRCode = keyGenerated.safePrivateKey ;
+        this.SafePrivateKeyQRCode.value = keyGenerated.safePrivateKey ;
+        this.SafePrivateKeyQRCode.generate();
+
+        this.RavenAddressTextQRCode = keyGenerated.rvnAddress ;
+        this.RavenAddressQRCode.value = keyGenerated.rvnAddress ;
+        this.RavenAddressQRCode.generate();
+
+        this.RavenWifTextQRCode = keyGenerated.rvnWIF ;
+        this.RavenWifQRCode.value = keyGenerated.rvnWIF ;
+        this.RavenWifQRCode.generate();
+
+        this.BTCAddressTextQRCode = keyGenerated.btcAddress ;
+        this.BTCAddressQRCode.value = keyGenerated.btcAddress ;
+        this.BTCAddressQRCode.generate();
+
+        this.BTCWifTextQRCode = keyGenerated.btcWIF ;
+        this.BTCWifQRCode.value = keyGenerated.btcWIF ;
+        this.BTCWifQRCode.generate();
+
+        this.BTGAddressTextQRCode = keyGenerated.btgAddress ;
+        this.BTGAddressQRCode.value = keyGenerated.btgAddress ;
+        this.BTGAddressQRCode.generate();
+
+        this.BTGWifTextQRCode = keyGenerated.btgWIF ;
+        this.BTGWifQRCode.value = keyGenerated.btgWIF ;
+        this.BTGWifQRCode.generate();
+
+        this.cdr.detectChanges();
+
+        this.print();
     }
 
     print(): void {
