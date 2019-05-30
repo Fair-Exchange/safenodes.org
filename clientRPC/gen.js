@@ -77,13 +77,11 @@ function sendKey(passBeforeHash, callback) {
 
             return callback(null, generatedKeys);
         } else {
-            // update UI with progress complete
-            //updateInterface(progress);
-            //console.log('Cool');
+            // update UI with progress complete 0 -> 1
+            // updateInterface(progress);
         }
     });
 }
-
 
 module.exports.keyGenerate = keyGenerate = {
     hash : sendKey

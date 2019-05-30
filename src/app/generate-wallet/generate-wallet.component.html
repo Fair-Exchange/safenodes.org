@@ -154,7 +154,9 @@
 
                 <div class="text-center doNotPrint">
                     <button (click)="print()" type="submit">PRINT MY WALLET</button>
+                    <button (click)="clearFields()" type="submit" class="ml-2">CLOSE</button>
                 </div>
+
             </div>
 
             <form action="/" id="generateWalletForm" [hidden]="showKey">

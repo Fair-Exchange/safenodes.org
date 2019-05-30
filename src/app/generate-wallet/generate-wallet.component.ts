@@ -14,7 +14,6 @@ export class GenerateWalletComponent implements OnInit {
 
     cdr;
     showKey = false;
-    passwordFail = false;
     SafeWifTextQRCode = 'DEFAULT';
     SafeAddressTextQRCode = 'DEFAULT';
     SafeKeyTextQRCode = 'DEFAULT';
@@ -46,7 +45,6 @@ export class GenerateWalletComponent implements OnInit {
 
     constructor(private CDR: ChangeDetectorRef) {
         this.cdr = CDR;
-
     }
 
     ngOnInit() {
@@ -166,6 +164,55 @@ export class GenerateWalletComponent implements OnInit {
         this.cdr.detectChanges();
 
         this.print();
+    }
+
+    clearFields(): void {
+        this.showKey = false;
+
+        this.SafeAddressTextQRCode = 'DEFAULT' ;
+        this.SafeAddressQRCode.value = 'DEFAULT' ;
+        this.SafeAddressQRCode.generate();
+
+        this.SafeWifTextQRCode = 'DEFAULT' ;
+        this.SafeWifQRCode.value = 'DEFAULT' ;
+        this.SafeWifQRCode.generate();
+
+        this.SafeKeyTextQRCode = 'DEFAULT' ;
+        this.SafeKeyQRCode.value = 'DEFAULT' ;
+        this.SafeKeyQRCode.generate();
+
+        this.SafePrivateKeyTextQRCode = 'DEFAULT' ;
+        this.SafePrivateKeyQRCode.value = 'DEFAULT' ;
+        this.SafePrivateKeyQRCode.generate();
+
+        this.RavenAddressTextQRCode = 'DEFAULT' ;
+        this.RavenAddressQRCode.value = 'DEFAULT' ;
+        this.RavenAddressQRCode.generate();
+
+        this.RavenWifTextQRCode = 'DEFAULT' ;
+        this.RavenWifQRCode.value = 'DEFAULT' ;
+        this.RavenWifQRCode.generate();
+
+        this.BTCAddressTextQRCode = 'DEFAULT' ;
+        this.BTCAddressQRCode.value = 'DEFAULT' ;
+        this.BTCAddressQRCode.generate();
+
+        this.BTCWifTextQRCode = 'DEFAULT' ;
+        this.BTCWifQRCode.value = 'DEFAULT' ;
+        this.BTCWifQRCode.generate();
+
+        this.BTGAddressTextQRCode = 'DEFAULT' ;
+        this.BTGAddressQRCode.value = 'DEFAULT' ;
+        this.BTGAddressQRCode.generate();
+
+        this.BTGWifTextQRCode = 'DEFAULT' ;
+        this.BTGWifQRCode.value = 'DEFAULT' ;
+        this.BTGWifQRCode.generate();
+
+        // Clear passwords
+        $( 'input[name=\'password_input\']' ).val(null);
+        $( 'input[name=\'password_confirm\']' ).val(null);
+        $('#passwordStrength').removeClass().addClass('alert alert-error').html('A strong password is required');
     }
 
     print(): void {
