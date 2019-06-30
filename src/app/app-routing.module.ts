@@ -9,7 +9,7 @@ import { NodesComponent } from './nodes/nodes.component';
 
 const routes: Routes = [
     { path: '', component: GenerateWalletComponent },
-    { path: '', component: HomeComponent },
+    // { path: '', component: HomeComponent },
     { path: 'generate-wallet', component: GenerateWalletComponent },
     { path: 'nodes', component: NodesComponent },
     { path: 'address/:id', component: NodeDetailsComponent }
