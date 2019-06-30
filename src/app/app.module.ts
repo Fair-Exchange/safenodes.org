@@ -7,6 +7,8 @@ import { NodesComponent } from './nodes/nodes.component';
 import { NodeDetailsComponent } from './node-details/node-details.component';
 import { HomeComponent } from './home/home.component';
 import { GenerateWalletComponent } from './generate-wallet/generate-wallet.component';
+import { FormsModule } from '@angular/forms';
+import { CountUpModule } from 'countup.js-angular2';
 
 // Additional modules
 import { QRCodeModule } from 'angular2-qrcode';
@@ -23,7 +25,9 @@ import { QRCodeModule } from 'angular2-qrcode';
         BrowserModule,
         NgbModule,
         AppRoutingModule,
-        QRCodeModule
+        FormsModule,
+        QRCodeModule,
+        CountUpModule
     ],
     providers: [],
     bootstrap: [AppComponent]

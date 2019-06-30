@@ -1,5 +1,25 @@
 <div class="container">
 
+    <div class="empty-state">
+        <div class="empty-state-container">
+            <div class="state-figure">
+                <img width="200px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin">
+            </div>
+            <h3 class="state-header"> SafeNodes are coming out </h3>
+            <p class="state-description lead text-muted"> Enter your SafeNode address to watch your rewards : </p>
+
+            <form>
+                <div class="form-group">
+                    <label for="safeAddress">Safe address</label>
+                    <input class="form-control" id="safeAddress" [(ngModel)]="searchModel" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search Address" aria-label="Search Address">
+                </div>
+
+                <button class="btn btn-outline-dark btn-block btn-sm" (click)="launchSearch()" type="submit"><i class="fa fa-search"></i> Launch search</button>
+            </form>
+        </div>
+    </div>
+
+    <!--
 
     <div class="row">
         <div class="col-md-4 col-sm-6">
@@ -167,4 +187,5 @@
             </table>
         </div>
     </div>
+    -->
 </div>

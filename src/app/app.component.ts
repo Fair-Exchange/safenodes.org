@@ -19,7 +19,12 @@ export class AppComponent {
 
     loading = false;
 
+    public myModel: string;
+
     constructor(private router: Router) {
+
+        this.myModel = '';
+
         this.router.events.subscribe((event: Event) => {
             switch (true) {
                 case event instanceof NavigationStart: {
@@ -38,5 +43,10 @@ export class AppComponent {
                 }
             }
         });
+    }
+
+    public launchSearch(): void {
+        this.router.navigateByUrl('/address/' + this.myModel + '?t=' + new Date().getTime(), { skipLocationChange: false });
+        this.myModel = null;
     }
 }

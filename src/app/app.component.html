@@ -6,22 +6,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto"></ul>
 
             <form class="form-inline my-2 my-lg-0 safe-search-bar">
 
                 <div>
-                    <input class="form-control" type="text" placeholder="Search Address" aria-label="Search Address">
+                    <input class="form-control" [(ngModel)]="myModel" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search Address" aria-label="Search Address">
                     <span class="bottom"></span>
                     <span class="right"></span>
                     <span class="top"></span>
                     <span class="left"></span>
                 </div>
 
-                <button class="btn btn-outline-light my-2 my-sm-0 ml-sm-2" type="submit"><i class="fa fa-search"></i></button>
+                <button class="btn btn-outline-light my-2 my-sm-0 ml-sm-2" (click)="launchSearch()" type="submit"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
@@ -32,6 +30,7 @@
     <div class="container safe-nav">
         <nav class="nav nav-underline">
 
+            <!--
             <a class="nav-link bubble-anim" routerLink="/"><i class="fa fa-search"></i> Explore</a>
 
             <div ngbDropdown class="bubble-anim">
@@ -60,13 +59,15 @@
                 </div>
             </div>
 
-            <a class="nav-link bubble-anim" routerLink="/nodes">
+            -->
+
+            <a class="nav-link bubble-anim" routerLink="/nodes" routerLinkActive="active-link">
                 <i class="fa fa-globe"></i> Nodes
-                <span class="badge badge-info align-text-bottom">27</span>
+                <!-- <span class="badge badge-info align-text-bottom">27</span> -->
             </a>
 
             <div class="ml-auto">
-                <a class="nav-link bubble-anim" routerLink="/generate-wallet"><i class="fa fa-briefcase"></i> Create Wallet</a>
+                <a class="nav-link bubble-anim" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-briefcase"></i> Create Wallet</a>
             </div>
         </nav>
     </div>
