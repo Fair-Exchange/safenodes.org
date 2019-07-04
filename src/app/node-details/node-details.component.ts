@@ -154,7 +154,7 @@ export class NodeDetailsComponent implements OnInit {
      * Calculate tier of SafeNode
      */
     private _loadFromServer(): void {
-        $.getJSON( 'http://' + window.location.hostname + ':3000/' + this.address + '/' + this.dataLoaded, (data) => {
+        $.getJSON( 'https://rpc.safenodes.org/' + this.address + '/' + this.dataLoaded, (data) => {
             // console.log( "success", data );
         }).done((data) => {
 
@@ -202,9 +202,7 @@ export class NodeDetailsComponent implements OnInit {
         // Send request
         this.loading = true;
 
-        $.getJSON( 'http://' + window.location.hostname + ':3000/' + this.address + '/' + this.dataLoaded, (data) => {
-            //         $.getJSON( 'http://207.180.218.32:3000/' + this.address, (data) => {
-        // $.getJSON( 'http://' + window.location.hostname + ':3000/45fd45/10', (data) => {
+        $.getJSON( 'https://rpc.safenodes.org/' + this.address + '/' + this.dataLoaded, (data) => {
             // console.log( "success", data );
         }).done((data) => {
 
