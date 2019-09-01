@@ -6,13 +6,16 @@ import { GenerateWalletComponent } from './generate-wallet/generate-wallet.compo
 import { HomeComponent } from './home/home.component';
 import { NodeDetailsComponent } from './node-details/node-details.component';
 import { NodesComponent } from './nodes/nodes.component';
+import {SetupNodeComponent} from './setup-node/setup-node.component';
 
 const routes: Routes = [
     { path: '', component: GenerateWalletComponent },
     // { path: '', component: HomeComponent },
     { path: 'generate-wallet', component: GenerateWalletComponent },
     { path: 'nodes', component: NodesComponent },
-    { path: 'address/:id', component: NodeDetailsComponent }
+    { path: 'address/:id', component: NodeDetailsComponent },
+    { path: 'setup-safenode', component: SetupNodeComponent }
+
 ];
 
 @NgModule({
