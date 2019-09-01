@@ -34,8 +34,8 @@ export class NodeDetailsComponent implements OnInit {
     };
 
     // Quantity of rewards show by pages
-    public dataPerLoad = 20;
-    public dataLoaded = 20;
+    public dataPerLoad = 40;
+    public dataLoaded = 40;
 
     // Check if Error occur
     public error = false;
@@ -54,10 +54,14 @@ export class NodeDetailsComponent implements OnInit {
 
     // Data about Node
     public node = {
+        collateral : 0,
         tier : 0,
+        tierReal : 0,
         amount : 0,
         amountNeed : 0,
         received : 0,
+        totalRewards : 0,
+        totalEarned : 0
     };
 
     // List of rewards get by address
@@ -124,15 +128,6 @@ export class NodeDetailsComponent implements OnInit {
         this.node.amountNeed = 0;
         this.dataLoaded = 20;
 
-        /*
-        If change amount & amount need, Count Up will go to 0 and stop
-        this.node = {
-            tier : 0,
-            // amount : 0,
-            amountNeed : 0
-            // received : 0
-        };*/
-
         this.error = false;
         this.loading = false;
         this.mainLoading = true;
@@ -145,7 +140,7 @@ export class NodeDetailsComponent implements OnInit {
     private _calculateTier(): void {
         this.node.tier = (this.node.amount < 10000) ? 0 : (
             (this.node.amount >= 10000 && this.node.amount < 50000) ? 1 : (
-                (this.node.amount >= 50000 && this.node.amount < 10000) ? 2 : 3
+                (this.node.amount >= 50000 && this.node.amount < 100000) ? 2 : 3
             )
         );
     }
@@ -154,32 +149,67 @@ export class NodeDetailsComponent implements OnInit {
      * Calculate tier of SafeNode
      */
     private _loadFromServer(): void {
-        $.getJSON( 'https://rpc.safenodes.org/' + this.address + '/' + this.dataLoaded, (data) => {
+
+        $.getJSON( 'https://rpc.safenodes.org:8443/getNodes', (data) => {
             // console.log( "success", data );
-        }).done((data) => {
+        }).done((nodesData) => {
 
-            this.addressFound = true;
-            this.mainLoading = false;
+            // Data of Node
+            let nodeFound = {
+                collateral : 0,
+                tier : 0
+            };
 
-            this.node.amount = Math.floor(data.balance / 100000000 * 100) / 100;
-            this.node.received = data.received / 100000000;
-
-            // Calculate tier of User
-            this._calculateTier();
-
-            // If tier 1 is no reach
-            this.node.amountNeed = Math.floor((10000 - (data.balance / 100000000)) * 100) / 100;
-
-            this.rewards = data.rewards;
-
-            this.dataLoaded += this.dataPerLoad;
-
-            if (data.rewards.length < this.dataPerLoad ) {
-                this.loadMoreData = false;
+            // Get current Node from list
+            for (let i = 0, ls = nodesData.nodes.SafeNodes.length; i < ls; i++) {
+                if (nodesData.nodes.SafeNodes[i].SAFE_address === this.address) {
+                    nodeFound = nodesData.nodes.SafeNodes[i];
+                }
             }
 
-            // Sort that by timestamp
-            this.rewards.sort((a, b) => b.timestamp - a.timestamp);
+            $.getJSON( 'https://rpc.safenodes.org:8443/' + this.address + '/' + this.dataLoaded, (data) => {
+                // console.log( "success", data );
+            }).done((data) => {
+
+                this.addressFound = true;
+                this.mainLoading = false;
+
+                this.node.collateral = Math.floor(nodeFound.collateral * 100) / 100;
+                this.node.tierReal = nodeFound.tier;
+                this.node.amount = Math.floor(data.balance / 100000000 * 100) / 100;
+                this.node.received = data.received / 100000000;
+                this.node.totalRewards = data.totalRewards;
+                this.node.totalEarned = Math.floor(data.totalEarned * 100) / 100;
+
+                // Calculate tier of User
+                this._calculateTier();
+
+                // If tier 1 is no reach
+                this.node.amountNeed = Math.floor((10000 - (data.balance / 100000000)) * 100) / 100;
+
+                this.rewards = data.rewards;
+
+                this.dataLoaded += this.dataPerLoad;
+
+                if (data.rewards.length < this.dataPerLoad ) {
+                    this.loadMoreData = false;
+                }
+
+                // Sort that by timestamp
+                this.rewards.sort((a, b) => b.timestamp - a.timestamp);
+            }).fail((jqXHR, textStatus, errorThrown) => {
+                if (jqXHR && jqXHR.responseJSON && jqXHR.responseJSON.error === 'addressNoFound') {
+                    this.addressFound = false;
+                    this.mainLoading = false;
+                } else {
+                    this.error = true;
+                }
+
+                console.error( 'Error : ', jqXHR, jqXHR.responseJSON, jqXHR.responseJSON.error);
+            }).always((d) => {
+                // console.log( "complete" );
+            });
+
         }).fail((jqXHR, textStatus, errorThrown) => {
             if (jqXHR && jqXHR.responseJSON && jqXHR.responseJSON.error === 'addressNoFound') {
                 this.addressFound = false;
@@ -202,7 +232,7 @@ export class NodeDetailsComponent implements OnInit {
         // Send request
         this.loading = true;
 
-        $.getJSON( 'https://rpc.safenodes.org/' + this.address + '/' + this.dataLoaded, (data) => {
+        $.getJSON( 'https://rpc.safenodes.org:8443/' + this.address + '/' + this.dataLoaded, (data) => {
             // console.log( "success", data );
         }).done((data) => {
 

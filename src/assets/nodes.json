@@ -1,0 +1,16 @@
+{
+    "nodes" : [
+        {
+            "address" : "RqQ3DAwSaZ8G5dfHNuW7KSfMhrXyxrJZaH",
+            "name" : "[US] Beer"
+        },
+        {
+            "address" : "RhXzyd6rC2nBWC9R1roN3FbNx7K41P8zSn",
+            "name" : "[DE] Coffee"
+        },
+        {
+            "address" : "RohKkDij25nDihRor2E5xvzFfBq5WMCKLY",
+            "name" : "[FR] Tea"
+        }
+    ]
+}

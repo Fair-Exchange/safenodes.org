@@ -29,8 +29,8 @@
             <div class="state-figure">
                 <i class="fab fa-searchengin"></i>
             </div>
-            <h3 class="state-header"> Address no found. </h3>
-            <p class="state-description lead text-muted"> Sorry for convenient but Address was no found. May you can check validity of address or contact administrator if problem persist. </p>
+            <h3 class="state-header"> Address not found </h3>
+            <p class="state-description lead text-muted"> Sorry for the inconvenience, but that address was not found. Please check the validity of the address or contact site administrator if the problem persists.  </p>
         </div>
     </div>
 
@@ -46,12 +46,11 @@
                         <th scope="row"><span>Address</span></th>
                         <td>
                             <a href="/address/{{address}}">{{address}}</a>
-
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><span>Tier</span></th>
-                        <td><b>{{node.tier}}</b></td>
+                        <td><b>{{node.tierReal}}</b></td>
                     </tr>
 
                     <tr>
@@ -64,8 +63,35 @@
                         <td><b><span [countUp]="node.amount" [options]="counterOpt"></span></b></td>
                     </tr>
 
+                    <tr>
+                        <th scope="row"><span>Collateral mature</span></th>
+                        <td><b><span [countUp]="node.collateral" [options]="counterOpt"></span></b></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><span>Number of rewards received</span></th>
+                        <td><b>{{node.totalRewards}}</b></td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><span>SAFE earned with SafeNode</span></th>
+                        <td><b><span [countUp]="node.totalEarned" [options]="counterOpt"></span></b></td>
+                    </tr>
+
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <div class="alert alert-warning" role="alert" [hidden]="node.tier == node.tierReal || error">
+            <div class="row vertical-align">
+                <div class="col-xs-2 text-center" style="padding: 4px 15px 4px;">
+                    <i class="fa fa-exclamation-triangle fa-4x"></i>
+                </div>
+                <div class="col-xs-10">
+                    <h3>Why my tier is <b>{{node.tierReal}}</b> and not <b>{{node.tier}}</b>?</h3>
+                    <span class="text-black">When you spend Safe on your SafeNode, fund need 1 week of maturation to be available.</span>
+                </div>
             </div>
         </div>
 
@@ -114,7 +140,7 @@
                         </td>
                         <td>{{ moment(reward.timestamp*1000).fromNow() }}</td>
                         <td>
-                            <b>MinerMore</b>
+                            <b>Notaries</b>
                         </td>
                         <td>
                             <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="/address/{{ address }}">{{ address }}</a></span></div>

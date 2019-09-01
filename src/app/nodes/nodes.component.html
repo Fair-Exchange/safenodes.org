@@ -1,5 +1,28 @@
 <div class="container">
 
+    <div class="empty-state" [hidden]="error || !mainLoading">
+        <div class="empty-state-container">
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
+            <h3 class="state-header"> Loading </h3>
+            <p class="state-description lead text-muted">
+                Please wait while our server does its best to serve you!
+            </p>
+        </div>
+    </div>
+
+    <div class="empty-state" [hidden]="!error">
+        <div class="empty-state-container">
+            <div class="state-figure">
+                <i class="fas fa-bug"></i>
+            </div>
+            <h3 class="state-header"> Error occurred </h3>
+            <p class="state-description lead text-muted"> Sorry, there has been an error processing your request, please try again later. </p>
+        </div>
+    </div>
+
+    <!--
     <div class="empty-state">
         <div class="empty-state-container">
             <div class="state-figure">
@@ -18,174 +41,203 @@
             </form>
         </div>
     </div>
-
-    <!--
-
-    <div class="row">
-        <div class="col-md-4 col-sm-6">
-            <div class="my-3 p-2 counter-block rounded shadow-sm green-border-top">
-                <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES ENABLED</h6>
-                <span class="count ml-4 mb-0">1972</span>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-            <div class="my-3 p-2 counter-block rounded shadow-sm green-border-top">
-                <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES ACTIVE</h6>
-                <span class="count ml-4">1872</span>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6">
-            <div class="my-3 p-2 counter-block rounded shadow-sm red-border-top">
-                <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES EXPIRED</h6>
-                <span class="count ml-4">100</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
-
-        <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NODES LIST</h6>
-
-        <div class="table-responsive mt-3">
-            <table class="table table-hover table-sm ">
-                <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Tiers</th>
-                    <th scope="col">Last Checked</th>
-                    <th scope="col">Last Paid</th>
-                    <th scope="col"><small>Base Reward</small></th>
-                    <th scope="col"><small>Additional Reward</small></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>1</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td><small>100 <img style="vertical-align:middle" width="24px" height="24px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin"></small></td>
-                    <td><small>50 <img style="vertical-align:middle" width="24px" height="24px" src="https://safe.trade/assets/rvn.svg" alt="RavenCoin"></small></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle offline-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle offline-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>2</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle offline-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>3</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle online-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>3</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-circle offline-node"></i></td>
-                    <td>
-                        <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq</a></span></div>
-                    </td>
-                    <td>3</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>May 8, 2019, 3:39:06 PM</td>
-                    <td>100 SAFE</td>
-                    <td>50 RVN</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
     -->
+
+    <div [hidden]="error || mainLoading">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm gold-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">TIER 3</h6>
+                    <span class="count ml-4 mb-0">{{tier3Count}}</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm silver-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">TIER 2</h6>
+                    <span class="count ml-4">{{tier2Count}}</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm bronze-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">TIER 1</h6>
+                    <span class="count ml-4">{{tier1Count}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm silver-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES ENABLED</h6>
+                    <span class="count ml-4 mb-0">{{nodesEnabled}}</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm green-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES ACTIVE</h6>
+                    <span class="count ml-4">{{nodesActives}}</span>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="my-3 p-2 counter-block rounded shadow-sm gold-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">COLLATERAL</h6>
+                    <span class="count ml-4">{{collateral}}</span>
+                </div>
+            </div>
+
+            <!--<div class="col-md-4 col-sm-6">
+                <div class="my-3 p-2 counter-block rounded shadow-sm red-border-top">
+                    <h6 class="border-bottom border-gray pb-2 mb-0 count-title">NODES EXPIRED</h6>
+                    <span class="count ml-4">100</span>
+                </div>
+            </div>
+            -->
+        </div>
+
+        <div class="my-3 p-3 bg-white rounded shadow-sm safe-block col-lg-12">
+
+            <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NODES</h6>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-hover table-sm ">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">SAFE Address</th>
+                        <th scope="col">SAFE Balance</th>
+                        <th scope="col">Collateral</th>
+                        <th scope="col">SAFE Tier</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let node of nodes; let i = index">
+                        <td><i class="fas fa-dot-circle" [ngClass]="{'text-success': node.tier > 0, 'text-danger':node.tier == 0 }"></i></td>
+                        <td>{{i+1}}</td>
+                        <td style="font-weight: bold;">
+                            {{node.name ? node.name : ""}}
+                        </td>
+                        <td>
+                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/{{node.SAFE_address}}">{{node.SAFE_address}}</a></span></div>
+                        </td>
+                        <td>{{node.balance}}</td>
+                        <td>{{node.collateral}}</td>
+                        <td>{{node.tier}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!--
+        <div class="my-3 m-3 p-3 bg-white rounded shadow-sm safe-block col-lg-6">
+
+            <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
+
+            <div class="table-responsive mt-3">
+                <table class="table table-hover table-sm ">
+                    <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Pubkey</th>
+                        <th scope="col">Block validated</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let notary of notaries; let i = index">
+                        <td>{{i+1}}</td>
+                        <td>
+                            <a class="" href="{{notary.url}}">{{notary.name}}</a>
+                        </td>
+                        <td>
+                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">{{notary.pubKey}}</a></span></div>
+                        </td>
+                        <td>{{notary.blockCount}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
+
+                    <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
+
+                    <div class="table-responsive mt-3">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Notary name</th>
+                                <th scope="col">
+                                    Blocks<br>
+                                    Validated
+                                </th>
+                                <th scope="col">
+                                    Blocks<br>
+                                    Notarized
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let notary of notaries; let i = index">
+                                <td>{{i+17}}</td>
+                                <td>
+                                    <a class="" href="{{notary.url}}">{{notary.name}}</a>
+                                </td>
+                                <td>{{notary.blockCount}}</td>
+                                <td>{{notary.blockCount}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
+
+                    <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
+
+                    <div class="table-responsive mt-3">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Notary name</th>
+                                <th scope="col">
+                                    Blocks<br>
+                                    Validated
+                                </th>
+                                <th scope="col">
+                                    Blocks<br>
+                                    Notarized
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let notary of notaries; let i = index">
+                                <td>{{i+17}}</td>
+                                <td>
+                                    <a class="" href="{{notary.url}}">{{notary.name}}</a>
+                                </td>
+                                <td>{{notary.blockCount}}</td>
+                                <td>{{notary.blockCount}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+    </div>
 </div>
