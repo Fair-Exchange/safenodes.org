@@ -133,10 +133,10 @@
                     <tbody>
                     <tr *ngFor="let reward of rewards;">
                         <td>
-                            <a class="color-tron-100 list-item-word" target="_blank" href="https://bchain.info/SAFE/block/{{ reward.height }}">{{ reward.height }}</a>
+                            <a class="color-tron-100 list-item-word" target="_blank" href="https://explorer.safecoin.org/block-index/{{ reward.height }}">{{ reward.height }}</a>
                         </td>
                         <td>
-                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" target="_blank" href="https://bchain.info/SAFE/tx/{{ reward.txid }}">{{ reward.txid }}</a></span></div>
+                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" target="_blank" href="https://explorer.safecoin.org/tx/{{ reward.txid }}">{{ reward.txid }}</a></span></div>
                         </td>
                         <td>{{ moment(reward.timestamp*1000).fromNow() }}</td>
                         <td>
