@@ -137,7 +137,6 @@ export class NodesComponent implements OnInit {
         const table: any = $('#safenodes').DataTable({
             info: false,
             paging : false,
-            searching : false,
             data: this.nodes,
             columnDefs: [
                 {
