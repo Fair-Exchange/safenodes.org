@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import * as $ from 'jquery';
+import 'datatables.net';
 
 @Component({
     selector: 'app-nodes',
@@ -38,6 +40,7 @@ export class NodesComponent implements OnInit {
     constructor(private router: Router) {
         this.nodes = [];
         this._loadNodesDataFromServer();
+
     }
 
     public launchSearch(): void {
@@ -110,6 +113,8 @@ export class NodesComponent implements OnInit {
 
             this.mainLoading = false;
 
+            this._loadTable();
+
         }).done((data) => {
             // Request done
             // console.log(data);
@@ -119,6 +124,62 @@ export class NodesComponent implements OnInit {
         }).always((d) => {
             // console.log( "complete" );
         });
+    }
+
+    public move(address: string) {
+        console.log(address);
+
+        // this.router.navigate(['/superheroes', { id: heroId, foo: 'foo' }])
+    }
+
+    private _loadTable() {
+
+        const table: any = $('#safenodes').DataTable({
+            info: false,
+            paging : false,
+            searching : false,
+            data: this.nodes,
+            columnDefs: [
+                {
+                    targets: 0,
+                    orderable: false,
+                    data: '',
+                    render: (data, type, row) => {
+                        return (row && row.tier > 0)
+                            ? '<i class="fas fa-dot-circle text-success"></i>'
+                            : '<i class="fas fa-dot-circle text-danger"></i>';
+                    }
+                },
+                {
+                    targets: 2,
+                    data: 'SAFE_address',
+                    render: (data, type, full, meta) => '<a href="javascript:void(0)" title="SAFE address : ' + data + '" target="_parent">' + data + '</a>'
+                },
+                {
+                    render: (data, type, row) => {
+                        return (data)
+                            ? '<b>' + data + '</b>'
+                            : '';
+                    },
+                    targets: 1
+                }
+            ],
+            columns: [
+                { },
+                { data: 'name' },
+                { data: 'SAFE_address' },
+                { data: 'balance' },
+                { data: 'collateral' },
+                { data: 'tier' },
+            ],
+            order: [[ 3, 'desc' ]],
+        });
+
+        const self = this;
+
+        $('#safenodes tbody').on( 'click', 'tr', function() {
+            self.router.navigate(['/address/' + table.row( this ).data().SAFE_address]);
+        } );
     }
 
     ngOnInit() {

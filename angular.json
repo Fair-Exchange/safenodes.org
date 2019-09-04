@@ -28,6 +28,7 @@
                             "src/.htaccess"
                         ],
                         "styles": [
+                            "./node_modules/datatables.net-dt/css/jquery.dataTables.min.css",
                             "src/styles.less"
                         ],
                         "scripts": [
