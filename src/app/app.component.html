@@ -61,15 +61,16 @@
 
             -->
 
-            <a class="nav-link bubble-anim" routerLink="/nodes" routerLinkActive="active-link">
+            <a class="nav-link bubble-anim" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 <i class="fa fa-globe"></i> Nodes
             </a>
 
             <div class="ml-auto">
-                <a class="nav-link bubble-anim" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-briefcase"></i> Create Wallet</a>
+                <a class="nav-link bubble-anim" routerLink="/generate-wallet" routerLinkActive="active-link"><i class="fa fa-briefcase"></i> Create Wallet</a>
             </div>
 
             <a class="nav-link bubble-anim" routerLink="/setup-safenode" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-cogs"></i> Setup SafeNode</a>
+            <a class="nav-link bubble-anim" routerLink="/raven-guide" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fas fa-link"></i> Raven Guide</a>
 
         </nav>
     </div>
@@ -122,7 +123,7 @@
                     <li class="list-inline-item"><a href="https://www.facebook.com/safecoins/"><i class="fab fa-facebook"></i></a></li>
                     <li class="list-inline-item"><a href="https://twitter.com/safecoins"><i class="fab fa-twitter"></i></a></li>
                     <li class="list-inline-item"><a href="https://discordapp.com/invite/vQgYGJz"><i class="fab fa-discord"></i></a></li>
-                    <li class="list-inline-item"><a href="https://github.com/Fair-Exchange"><i class="fab fa-github"></i></a></li>
+                    <li class="list-inline-item"><a href="https://github.com/Fair-Exchange/safenodes.org"><i class="fab fa-github"></i></a></li>
                 </ul>
                 <ul class="list-unstyled social">
                     <li class="list-inline-item"><a href="https://bitcointalk.org/index.php?topic=2838370"><i class="fab fa-bitcoin"></i></a></li>
