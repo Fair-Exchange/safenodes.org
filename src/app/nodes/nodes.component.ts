@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import * as $ from 'jquery';
 import 'datatables.net';
+import * as moment from 'moment';
 
 @Component({
     selector: 'app-nodes',
@@ -82,7 +83,8 @@ export class NodesComponent implements OnInit {
      * Load custom data for Safe Nodes like as JSON file
      */
     private _loadNodesDataFromServer(): void {
-        $.getJSON( 'https://rpc.safenodes.org:8443/getNodes', (data) => {
+
+        $.getJSON( 'https://rpc.safenodes.org:8443/getJSONNodes', (data) => {
             this.updateData(data.nodes);
         }).done((data) => {
             // Request done
@@ -161,17 +163,27 @@ export class NodesComponent implements OnInit {
                             : '';
                     },
                     targets: 1
+                },
+                {
+                    render: (data, type, row) => {
+
+                        const activity = (row.lastActivity) ? moment(row.lastActivity * 1000).fromNow()  : 'Never active';
+
+                        return activity;
+                    },
+                    targets: 3
                 }
             ],
             columns: [
                 { },
                 { data: 'name' },
                 { data: 'SAFE_address' },
+                { data: 'lastActivity' },
                 { data: 'balance' },
                 { data: 'collateral' },
                 { data: 'tier' },
             ],
-            order: [[ 3, 'desc' ]],
+            order: [[ 4, 'desc' ]],
         });
 
         const self = this;
