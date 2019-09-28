@@ -13,7 +13,6 @@
         </div>
     </div>
 
-
     <div class="empty-state" [hidden]="!error">
         <div class="empty-state-container">
             <div class="state-figure">
@@ -78,6 +77,11 @@
                         <td><b><span [countUp]="node.totalEarned" [options]="counterOpt"></span></b></td>
                     </tr>
 
+                    <tr>
+                        <th scope="row"><span>SAFE earned with Raven Notarization</span></th>
+                        <td><b><span [countUp]="node.safeEarnedWithRVN" [options]="counterOpt"></span></b></td>
+                    </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -117,7 +121,7 @@
         </div>
 
         <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" [hidden]="!rewards || rewards.length < 1">
-            <h4 class="border-bottom border-gray pb-4 mb-0"><img width="32px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin"> REWARD</h4>
+            <h4 class="border-bottom border-gray pb-4 mb-0"><img width="32px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin"> REWARDS</h4>
             <div class="table-responsive">
                 <table class="table table-hover table-sm ">
                     <thead>
@@ -154,7 +158,50 @@
                     <div [hidden]="!loading" class="lds-dual-ring"></div>
                 </div>
 
-                <button [hidden]="!loadMoreData" (click)="loadMore()" type="button" class="btn btn-secondary btn-block btn-sm">Load more</button>
+                <button [hidden]="!loadMoreData" (click)="loadMore('safe')" type="button" class="btn btn-secondary btn-block btn-sm">Load more</button>
+
+            </div>
+        </div>
+
+        <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" [hidden]="!ravenRewards || ravenRewards.length < 1">
+            <h4 class="border-bottom border-gray pb-4 mb-0"><img width="32px" src="https://safe.trade/assets/rvn.svg" alt="RavenCoin"> REWARDS</h4>
+            <div class="table-responsive">
+                <table class="table table-hover table-sm ">
+                    <thead>
+                    <tr>
+                        <th scope="col">Block</th>
+                        <th scope="col">Txid</th>
+                        <th scope="col" style="min-width: 120px;">Age</th>
+                        <th scope="col">From</th>
+                        <th scope="col">To</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let reward of ravenRewards;">
+                        <td>
+                            <a class="color-tron-100 list-item-word" target="_blank" href="https://explorer.safecoin.org/block-index/{{ reward.height }}">{{ reward.height }}</a>
+                        </td>
+                        <td>
+                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" target="_blank" href="https://explorer.safecoin.org/tx/{{ reward.txid }}">{{ reward.txid }}</a></span></div>
+                        </td>
+                        <td>{{ moment(reward.timestamp*1000).fromNow() }}</td>
+                        <td>
+                            <b>SafeNodes</b>
+                        </td>
+                        <td>
+                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" href="/address/{{ address }}">{{ address }}</a></span></div>
+                        </td>
+                        <td><span data-toggle="tooltip" data-placement="top" title="Tooltip on top">{{ reward.received_SAFE }}</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="text-center">
+                    <div [hidden]="!loading" class="lds-dual-ring"></div>
+                </div>
+
+                <button [hidden]="!loadMoreRavenData" (click)="loadMore('raven')" type="button" class="btn btn-secondary btn-block btn-sm">Load more</button>
 
             </div>
         </div>

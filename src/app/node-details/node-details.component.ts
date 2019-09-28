@@ -37,6 +37,10 @@ export class NodeDetailsComponent implements OnInit {
     public dataPerLoad = 40;
     public dataLoaded = 40;
 
+    public ravenDataLoaded = 40;
+    public ravenDataPerLoad = 40;
+    public loadMoreRavenData = false;
+
     // Check if Error occur
     public error = false;
 
@@ -61,11 +65,17 @@ export class NodeDetailsComponent implements OnInit {
         amountNeed : 0,
         received : 0,
         totalRewards : 0,
-        totalEarned : 0
+        totalEarned : 0,
+
+        // How much Safe earned with Raven notarization
+        safeEarnedWithRVN : 0
     };
 
     // List of rewards get by address
     public rewards = [];
+
+    // List of Raven rewards get by address
+    public ravenRewards = [];
 
     // Library to calculate time
     public moment: any = moment;
@@ -150,7 +160,7 @@ export class NodeDetailsComponent implements OnInit {
      */
     private _loadFromServer(): void {
 
-        $.getJSON( 'https://rpc.safenodes.org:8443/getNodes', (data) => {
+        $.getJSON( 'https://rpc.safenodes.org:8443/getJSONNodes', (data) => {
             // console.log( "success", data );
         }).done((nodesData) => {
 
@@ -167,7 +177,7 @@ export class NodeDetailsComponent implements OnInit {
                 }
             }
 
-            $.getJSON( 'https://rpc.safenodes.org:8443/' + this.address + '/' + this.dataLoaded, (data) => {
+            $.getJSON( 'https://rpc.safenodes.org:8443/home/' + this.address, (data) => {
                 // console.log( "success", data );
             }).done((data) => {
 
@@ -176,10 +186,12 @@ export class NodeDetailsComponent implements OnInit {
 
                 this.node.collateral = Math.floor(nodeFound.collateral * 100) / 100;
                 this.node.tierReal = nodeFound.tier;
-                this.node.amount = Math.floor(data.balance / 100000000 * 100) / 100;
+                this.node.amount = Math.floor(data.balance * 100) / 100;
                 this.node.received = data.received / 100000000;
                 this.node.totalRewards = data.totalRewards;
                 this.node.totalEarned = Math.floor(data.totalEarned * 100) / 100;
+
+                this.node.safeEarnedWithRVN = data.safeEarnedWithRVN;
 
                 // Calculate tier of User
                 this._calculateTier();
@@ -187,12 +199,17 @@ export class NodeDetailsComponent implements OnInit {
                 // If tier 1 is no reach
                 this.node.amountNeed = Math.floor((10000 - (data.balance / 100000000)) * 100) / 100;
 
-                this.rewards = data.rewards;
+                this.rewards = data.safeRewards;
+                this.ravenRewards = data.ravenRewards;
 
                 this.dataLoaded += this.dataPerLoad;
 
-                if (data.rewards.length < this.dataPerLoad ) {
+                if (this.rewards.length < this.dataPerLoad ) {
                     this.loadMoreData = false;
+                }
+
+                if (this.ravenRewards.length < this.ravenDataPerLoad ) {
+                    this.loadMoreRavenData = false;
                 }
 
                 // Sort that by timestamp
@@ -227,12 +244,19 @@ export class NodeDetailsComponent implements OnInit {
     /**
      * Load more rewards
      */
-    public loadMore(): void {
+    public loadMore(crypto): void {
 
         // Send request
         this.loading = true;
 
-        $.getJSON( 'https://rpc.safenodes.org:8443/' + this.address + '/' + this.dataLoaded, (data) => {
+        // Assign values as crypto
+        const rewardsTable = (crypto === 'safe') ? 'rewards' : (crypto === 'raven') ? 'ravenRewards' : null;
+        const dataLoadedTable = (crypto === 'safe') ? 'dataLoaded' : (crypto === 'raven') ? 'ravenDataLoaded' : null;
+        const dataPerLoadTable = (crypto === 'safe') ? 'dataPerLoad' : (crypto === 'raven') ? 'ravenDataPerLoad' : null;
+        const loadMore = (crypto === 'safe') ? 'loadMoreData' : (crypto === 'raven') ? 'loadMoreRavenData' : null;
+
+        // Load data from server
+        $.getJSON( 'https://rpc.safenodes.org:8443/' + crypto + '/' + this.address + '/' + this.dataLoaded, (data) => {
             // console.log( "success", data );
         }).done((data) => {
 
@@ -240,8 +264,8 @@ export class NodeDetailsComponent implements OnInit {
             this.loading = false;
 
             for (let i = 0, ls = data.rewards.length; i < ls; i++) {
-                for (let j = 0, lx = this.rewards.length; j < lx; j++) {
-                    if (this.rewards[j].txid === data.rewards[i].txid) {
+                for (let j = 0, lx = this[rewardsTable].length; j < lx; j++) {
+                    if (this[rewardsTable][j].txid === data.rewards[i].txid) {
                         data.rewards.splice(i, 1);
                         i--;
                         ls--;
@@ -250,16 +274,15 @@ export class NodeDetailsComponent implements OnInit {
                 }
             }
 
-            this.rewards = this.rewards.concat(data.rewards);
+            this[rewardsTable] = this[rewardsTable].concat(data.rewards);
+            this[dataLoadedTable] += this.dataPerLoad;
 
-            this.dataLoaded += this.dataPerLoad;
-
-            if (data.rewards.length < this.dataPerLoad ) {
-                this.loadMoreData = false;
+            if (data.rewards.length < this[dataPerLoadTable]) {
+                this[loadMore] = false;
             }
 
             // Sort that by timestamp
-            this.rewards.sort((a, b) => b.timestamp - a.timestamp);
+            this[rewardsTable].sort((a, b) => b.timestamp - a.timestamp);
 
         }).fail((jqXHR, textStatus, errorThrown) => {
             if (jqXHR && jqXHR.responseJSON && jqXHR.responseJSON.error === 'addressNoFound') {
