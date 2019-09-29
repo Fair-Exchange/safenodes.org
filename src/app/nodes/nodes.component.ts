@@ -9,6 +9,7 @@ import * as moment from 'moment';
     templateUrl: './nodes.component.html',
     styleUrls: ['./nodes.component.less']
 })
+
 export class NodesComponent implements OnInit {
 
     public searchModel: string;
@@ -41,7 +42,6 @@ export class NodesComponent implements OnInit {
     constructor(private router: Router) {
         this.nodes = [];
         this._loadNodesDataFromServer();
-
     }
 
     public launchSearch(): void {
@@ -83,17 +83,11 @@ export class NodesComponent implements OnInit {
      * Load custom data for Safe Nodes like as JSON file
      */
     private _loadNodesDataFromServer(): void {
-
         $.getJSON( 'https://rpc.safenodes.org:8443/getJSONNodes', (data) => {
             this.updateData(data.nodes);
-        }).done((data) => {
-            // Request done
-            // console.log(data);
         }).fail((jqXHR, textStatus, errorThrown) => {
             this.error = true;
             console.error( 'Error during load custom Node data : ', jqXHR, jqXHR.responseJSON, jqXHR.responseJSON.error);
-        }).always((d) => {
-            // console.log( "complete" );
         });
     }
 
@@ -113,10 +107,11 @@ export class NodesComponent implements OnInit {
                 }
             }
 
+            this.nodes.sort((a, b) => b.collateral - a.collateral);
+
             this.mainLoading = false;
 
             this._loadTable();
-
         }).done((data) => {
             // Request done
             // console.log(data);
@@ -128,12 +123,9 @@ export class NodesComponent implements OnInit {
         });
     }
 
-    public move(address: string) {
-        console.log(address);
-
-        // this.router.navigate(['/superheroes', { id: heroId, foo: 'foo' }])
-    }
-
+    /**
+     * Load Nodes table
+     */
     private _loadTable() {
 
         const table: any = $('#safenodes').DataTable({
@@ -144,7 +136,6 @@ export class NodesComponent implements OnInit {
                 {
                     targets: 0,
                     orderable: false,
-                    data: '',
                     render: (data, type, row) => {
                         return (row && row.tier > 0)
                             ? '<i class="fas fa-dot-circle text-success"></i>'
@@ -152,29 +143,32 @@ export class NodesComponent implements OnInit {
                     }
                 },
                 {
+                    targets: 1,
+                    orderable: false,
+                    render: (data, type, row, meta) => {
+                        return '<b>' + (meta.row + 1) + '</b>';
+                    }
+                },
+                {
                     targets: 2,
+                    render: (data, type, row) => {
+                        return (data) ? '<b>' + data + '</b>' : '';
+                    }
+                },
+                {
+                    targets: 3,
                     data: 'SAFE_address',
                     render: (data, type, full, meta) => '<a href="javascript:void(0)" title="SAFE address : ' + data + '" target="_parent">' + data + '</a>'
                 },
                 {
+                    targets: 4,
                     render: (data, type, row) => {
-                        return (data)
-                            ? '<b>' + data + '</b>'
-                            : '';
-                    },
-                    targets: 1
-                },
-                {
-                    render: (data, type, row) => {
-
-                        const activity = (row.lastActivity) ? moment(row.lastActivity * 1000).fromNow()  : 'Never active';
-
-                        return activity;
-                    },
-                    targets: 3
+                        return (row.lastActivity) ? moment(row.lastActivity * 1000).fromNow()  : 'Never active';
+                    }
                 }
             ],
             columns: [
+                { },
                 { },
                 { data: 'name' },
                 { data: 'SAFE_address' },
@@ -183,7 +177,7 @@ export class NodesComponent implements OnInit {
                 { data: 'collateral' },
                 { data: 'tier' },
             ],
-            order: [[ 4, 'desc' ]],
+            order: [[ 6, 'desc' ]],
         });
 
         const self = this;
