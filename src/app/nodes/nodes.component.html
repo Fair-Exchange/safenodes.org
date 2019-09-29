@@ -22,27 +22,6 @@
         </div>
     </div>
 
-    <!--
-    <div class="empty-state">
-        <div class="empty-state-container">
-            <div class="state-figure">
-                <img width="200px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin">
-            </div>
-            <h3 class="state-header"> SafeNodes are coming out </h3>
-            <p class="state-description lead text-muted"> Enter your SafeNode address to watch your rewards : </p>
-
-            <form>
-                <div class="form-group">
-                    <label for="safeAddress">Safe address</label>
-                    <input class="form-control" id="safeAddress" [(ngModel)]="searchModel" [ngModelOptions]="{standalone: true}" type="text" placeholder="Search Address" aria-label="Search Address">
-                </div>
-
-                <button class="btn btn-outline-dark btn-block btn-sm" (click)="launchSearch()" type="submit"><i class="fa fa-search"></i> Launch search</button>
-            </form>
-        </div>
-    </div>
-    -->
-
     <div [hidden]="error || mainLoading">
         <div class="row">
             <div class="col-md-4 col-sm-6">
@@ -99,6 +78,7 @@
                     <thead>
                     <tr>
                         <th scope="col"></th>
+                        <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">SAFE Address</th>
                         <th scope="col">Activity</th>
@@ -110,110 +90,5 @@
                 </table>
             </div>
         </div>
-
-        <!--
-        <div class="my-3 m-3 p-3 bg-white rounded shadow-sm safe-block col-lg-6">
-
-            <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
-
-            <div class="table-responsive mt-3">
-                <table class="table table-hover table-sm ">
-                    <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Pubkey</th>
-                        <th scope="col">Block validated</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let notary of notaries; let i = index">
-                        <td>{{i+1}}</td>
-                        <td>
-                            <a class="" href="{{notary.url}}">{{notary.name}}</a>
-                        </td>
-                        <td>
-                            <div class="truncate-ellipsis"><span><a class="color-tron-100 list-item-word" routerLink="/address/RiyjoN1oU2LUcEtSJC16AXuusZxcHriZNq">{{notary.pubKey}}</a></span></div>
-                        </td>
-                        <td>{{notary.blockCount}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
-
-                    <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
-
-                    <div class="table-responsive mt-3">
-                        <table class="table table-hover table-sm">
-                            <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">Notary name</th>
-                                <th scope="col">
-                                    Blocks<br>
-                                    Validated
-                                </th>
-                                <th scope="col">
-                                    Blocks<br>
-                                    Notarized
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let notary of notaries; let i = index">
-                                <td>{{i+17}}</td>
-                                <td>
-                                    <a class="" href="{{notary.url}}">{{notary.name}}</a>
-                                </td>
-                                <td>{{notary.blockCount}}</td>
-                                <td>{{notary.blockCount}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="my-3 p-3 bg-white rounded shadow-sm safe-block">
-
-                    <h6 class="pb-2 mb-0"><i class="fa fa-globe"></i> NOTARIES</h6>
-
-                    <div class="table-responsive mt-3">
-                        <table class="table table-hover table-sm">
-                            <thead>
-                            <tr>
-                                <th scope="col"></th>
-                                <th scope="col">Notary name</th>
-                                <th scope="col">
-                                    Blocks<br>
-                                    Validated
-                                </th>
-                                <th scope="col">
-                                    Blocks<br>
-                                    Notarized
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr *ngFor="let notary of notaries; let i = index">
-                                <td>{{i+17}}</td>
-                                <td>
-                                    <a class="" href="{{notary.url}}">{{notary.name}}</a>
-                                </td>
-                                <td>{{notary.blockCount}}</td>
-                                <td>{{notary.blockCount}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
-
     </div>
 </div>
