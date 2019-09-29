@@ -14,6 +14,9 @@ import { CountUpModule } from 'countup.js-angular2';
 // Additional modules
 import { QRCodeModule } from 'angular2-qrcode';
 import { RavenGuideComponent } from './raven-guide/raven-guide.component';
+import { StatsComponent } from './stats/stats.component';
+import { StatsSafenodesComponent } from './stats-safenodes/stats-safenodes.component';
+import { StatsRavenComponent } from './stats-raven/stats-raven.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +26,10 @@ import { RavenGuideComponent } from './raven-guide/raven-guide.component';
         HomeComponent,
         GenerateWalletComponent,
         SetupNodeComponent,
-        RavenGuideComponent
+        RavenGuideComponent,
+        StatsComponent,
+        StatsSafenodesComponent,
+        StatsRavenComponent
     ],
     imports: [
         BrowserModule,

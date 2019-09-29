@@ -8,6 +8,9 @@ import { NodeDetailsComponent } from './node-details/node-details.component';
 import { NodesComponent } from './nodes/nodes.component';
 import {SetupNodeComponent} from './setup-node/setup-node.component';
 import {RavenGuideComponent} from './raven-guide/raven-guide.component';
+import {StatsComponent} from './stats/stats.component';
+import {StatsRavenComponent} from './stats-raven/stats-raven.component';
+import {StatsSafenodesComponent} from './stats-safenodes/stats-safenodes.component';
 
 const routes: Routes = [
     { path: '', component: NodesComponent },
@@ -16,8 +19,10 @@ const routes: Routes = [
     { path: 'nodes', component: NodesComponent },
     { path: 'address/:id', component: NodeDetailsComponent },
     { path: 'setup-safenode', component: SetupNodeComponent },
-    { path: 'raven-guide', component: RavenGuideComponent }
-
+    { path: 'raven-guide', component: RavenGuideComponent },
+    { path: 'stats', component: StatsComponent },
+    { path: 'stats/safenodes', component: StatsSafenodesComponent },
+    { path: 'stats/raven', component: StatsRavenComponent }
 ];
 
 @NgModule({

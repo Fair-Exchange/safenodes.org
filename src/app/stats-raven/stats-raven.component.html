@@ -1,0 +1,55 @@
+<div class="container">
+
+    <div class="empty-state" [hidden]="error || !mainLoading">
+        <div class="empty-state-container">
+            <div id="preloader">
+                <div id="loader"></div>
+            </div>
+            <h3 class="state-header"> Loading </h3>
+            <p class="state-description lead text-muted">
+                Please wait while our server does its best to serve you!
+            </p>
+        </div>
+    </div>
+
+    <div class="empty-state" [hidden]="!error">
+        <div class="empty-state-container">
+            <div class="state-figure">
+                <i class="fas fa-bug"></i>
+            </div>
+            <h3 class="state-header"> Error occurred </h3>
+            <p class="state-description lead text-muted"> Sorry, there has been an error processing your request, please try again later. </p>
+        </div>
+    </div>
+
+    <div class="row" [hidden]="error || mainLoading">
+
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" >
+                <h4 class="border-bottom border-gray pb-4 mb-0 text-center">Raven Block Notarized</h4>
+                <canvas id="ravenChart1" width="200" height="200"></canvas>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" >
+                <h4 class="border-bottom border-gray pb-4 mb-0 text-center">Raven miner</h4>
+                <canvas id="ravenChart2" width="200" height="200"></canvas>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" >
+                <h4 class="border-bottom border-gray pb-4 mb-0 text-center">Raven rewards send</h4>
+                <canvas id="ravenChart3" width="200" height="200"></canvas>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6 col-lg-6">
+            <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" >
+                <h4 class="border-bottom border-gray pb-4 mb-0 text-center">Raven rewards in Safe send</h4>
+                <canvas id="ravenChart4" width="200" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
