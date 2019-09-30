@@ -20,9 +20,9 @@ const routes: Routes = [
     { path: 'address/:id', component: NodeDetailsComponent },
     { path: 'setup-safenode', component: SetupNodeComponent },
     { path: 'raven-guide', component: RavenGuideComponent },
-    { path: 'stats', component: StatsComponent },
-    { path: 'stats/safenodes', component: StatsSafenodesComponent },
-    { path: 'stats/raven', component: StatsRavenComponent }
+    { path: 'statistics', component: StatsComponent },
+    { path: 'statistics/safenodes', component: StatsSafenodesComponent },
+    { path: 'statistics/raven', component: StatsRavenComponent }
 ];
 
 @NgModule({

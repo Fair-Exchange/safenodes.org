@@ -12,8 +12,10 @@ import * as moment from 'moment';
 
 export class NodesComponent implements OnInit {
 
+    // Current search model
     public searchModel: string;
 
+    // Node object
     public nodes: {
         balance: number;
         collateral: number;
@@ -30,6 +32,7 @@ export class NodesComponent implements OnInit {
     public tier2Count = 0;
     public tier3Count = 0;
 
+    // Nodes counter
     public nodesEnabled = 0;
     public nodesActives = 0;
 
@@ -39,13 +42,13 @@ export class NodesComponent implements OnInit {
     // Check if address is currently loading
     public mainLoading = true;
 
+    /**
+     * Constructor
+     * @param router        Angular router
+     */
     constructor(private router: Router) {
         this.nodes = [];
         this._loadNodesDataFromServer();
-    }
-
-    public launchSearch(): void {
-        this.router.navigateByUrl('/address/' + this.searchModel);
     }
 
     /**
@@ -107,19 +110,15 @@ export class NodesComponent implements OnInit {
                 }
             }
 
+            // Sort node by collateral by default
             this.nodes.sort((a, b) => b.collateral - a.collateral);
 
             this.mainLoading = false;
 
             this._loadTable();
-        }).done((data) => {
-            // Request done
-            // console.log(data);
         }).fail((jqXHR, textStatus, errorThrown) => {
             this.error = true;
             console.error( 'Error during load custom Node data : ', jqXHR, jqXHR.responseJSON, jqXHR.responseJSON.error);
-        }).always((d) => {
-            // console.log( "complete" );
         });
     }
 
@@ -128,6 +127,7 @@ export class NodesComponent implements OnInit {
      */
     private _loadTable() {
 
+        // Create DataTables for displaying Nodes
         const table: any = $('#safenodes').DataTable({
             info: false,
             paging : false,
@@ -180,13 +180,18 @@ export class NodesComponent implements OnInit {
             order: [[ 6, 'desc' ]],
         });
 
+        // Scope
         const self = this;
 
+        // Redirect user when he click on Node
         $('#safenodes tbody').on( 'click', 'tr', function() {
             self.router.navigate(['/address/' + table.row( this ).data().SAFE_address]);
         } );
     }
 
+    /**
+     * After Angular is init
+     */
     ngOnInit() {
 
     }
