@@ -36,7 +36,7 @@
     <div [hidden]="!addressFound || error">
 
         <div class="my-4 p-4 bg-white rounded shadow-sm safe-block safe-address" >
-            <h4 class="border-bottom border-gray pb-4 mb-0"> <i class="fa fa-address-card fa-fw"></i> ADDRESS</h4>
+            <h4 class="border-bottom border-gray pb-4 mb-0">ADDRESS</h4>
 
             <div class="table-responsive">
                 <table class="table m-0 table-md">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" [hidden]="!rewards || rewards.length < 1">
-            <h4 class="border-bottom border-gray pb-4 mb-0"><img width="32px" src="https://safe.trade/assets/safe.svg" alt="Safe Coin"> REWARDS</h4>
+            <h4 class="border-bottom border-gray pb-4 mb-0">SAFECOIN REWARDS</h4>
             <div class="table-responsive">
                 <table class="table table-hover table-sm ">
                     <thead>
@@ -164,7 +164,7 @@
         </div>
 
         <div class="my-4 p-4 bg-white rounded shadow-sm safe-block" [hidden]="!ravenRewards || ravenRewards.length < 1">
-            <h4 class="border-bottom border-gray pb-4 mb-0"><img width="32px" src="https://safe.trade/assets/rvn.svg" alt="RavenCoin"> REWARDS</h4>
+            <h4 class="border-bottom border-gray pb-4 mb-0">RAVENCOIN REWARDS</h4>
             <div class="table-responsive">
                 <table class="table table-hover table-sm ">
                     <thead>
@@ -201,7 +201,7 @@
                     <div [hidden]="!loading" class="lds-dual-ring"></div>
                 </div>
 
-                <button [hidden]="!loadMoreRavenData" (click)="loadMore('raven')" type="button" class="btn btn-secondary btn-block btn-sm">Load more</button>
+                <button [hidden]="!loadMoreRavenData" (click)="loadMore('raven')" type="button" class="btn btn-secondary btn-block btn-sm">LOAD MORE</button>
 
             </div>
         </div>

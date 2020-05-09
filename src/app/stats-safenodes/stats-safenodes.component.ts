@@ -455,7 +455,7 @@ export class StatsSafenodesComponent implements OnInit {
                         'rgba(255, 255, 255, 0.5)',
                         'rgba(255, 255, 255, 0.5)'
                     ],
-                    borderWidth: 3
+                    borderWidth: 1
                 }]
             },
             options: {
