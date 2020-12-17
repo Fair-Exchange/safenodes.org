@@ -29,7 +29,7 @@
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "countup.js-angular2": "^7.3.0",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.19",
     "dotenv": "^8.0.0",
     "errorhandler": "^1.5.1",
