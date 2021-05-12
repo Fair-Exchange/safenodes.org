@@ -25,7 +25,7 @@
     "bigi": "^1.4.2",
     "bitgo-utxo-lib": "github:zelcash/bitgo-utxo-lib",
     "body-parser": "^1.19.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "core-js": "^2.5.4",
     "cors": "^2.8.5",
     "countup.js-angular2": "^7.3.0",
